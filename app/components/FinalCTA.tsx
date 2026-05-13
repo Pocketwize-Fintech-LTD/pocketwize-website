@@ -4,9 +4,9 @@ import EarlyAccessTrigger from "./early-access/Trigger";
 
 export default function FinalCTA() {
   return (
-    <section id="cta" className="relative bg-paper py-24 sm:py-32">
+    <section id="cta" className="relative bg-paper py-16 sm:py-20">
       <Container size="default">
-        <Reveal className="relative overflow-hidden rounded-4xl border border-line bg-secondary-soft/60 px-7 py-14 sm:px-14 sm:py-20">
+        <Reveal className="relative overflow-hidden rounded-4xl border border-line bg-primary-soft/60 px-7 py-14 sm:px-14 sm:py-20">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 mask-[radial-gradient(70%_60%_at_50%_0%,black,transparent)] pw-grid-bg opacity-50"
@@ -43,7 +43,7 @@ export default function FinalCTA() {
                 </svg>
               </EarlyAccessTrigger>
               <p className="text-[12.5px] text-soft">
-                Takes about 60 seconds. No credit card.
+                Takes about 60 seconds. No debit card.
               </p>
             </div>
           </div>
@@ -52,4 +52,3 @@ export default function FinalCTA() {
     </section>
   );
 }
-

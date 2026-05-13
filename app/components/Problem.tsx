@@ -10,7 +10,7 @@ const problems = [
 
 export default function Problem() {
   return (
-    <section id="problem" className="relative bg-paper py-24 sm:py-32">
+    <section id="problem" className="relative bg-paper py-16 sm:py-20">
       <Container size="default">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="pw-display mt-4 text-[34px] font-medium leading-[1.1] text-ink sm:text-[46px]">

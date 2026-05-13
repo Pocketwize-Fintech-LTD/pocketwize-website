@@ -17,7 +17,7 @@ export default function Hero() {
       />
       <Container
         size="wide"
-        className="relative pt-16 pb-20 sm:pt-24 sm:pb-28 lg:pt-32 lg:pb-32"
+        className="relative pt-12 pb-14 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-20"
       >
         <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-6">
           <div className="text-center lg:col-span-7 lg:text-left">
@@ -68,7 +68,7 @@ export default function Hero() {
                 alt="Pocketwize AI Coach showing a conversation about spending insights"
                 priority
                 sizes="(max-width: 640px) 320px, (max-width: 1024px) 380px, 480px"
-                className="pw-float relative h-auto max-h-160 w-auto select-none lg:max-h-190"
+                className="pw-float relative h-auto max-h-128 w-auto select-none lg:max-h-150"
               />
             </div>
           </div>

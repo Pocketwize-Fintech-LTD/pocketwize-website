@@ -18,12 +18,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Pocketwize — Honest answers about your money",
   description:
-    "Pocketwize is an AI-powered financial clarity platform for young Nigerians. Understand where your money goes, find spending leaks, and make calmer decisions.",
-  metadataBase: new URL("https://pocketwize.co"),
+    "Pocketwize is an AI-powered financial clarity platform for everyone. Understand where your money goes, find spending leaks, and make calmer decisions.",
+  metadataBase: new URL("https://getpocketwize.com"),
   openGraph: {
     title: "Pocketwize — Honest answers about your money",
     description:
-      "Calm, intelligent insights about your spending. Built for young Nigerians who want to stop ending the month confused.",
+      "Calm, intelligent insights about your spending. Built for people who want to stop ending the month confused.",
     type: "website",
   },
 };
