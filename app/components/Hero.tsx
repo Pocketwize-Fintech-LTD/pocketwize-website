@@ -5,7 +5,7 @@ import heroImg from "../../public/hero_img.png";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-primary-soft/60">
+    <section className="relative flex min-h-svh items-center overflow-hidden bg-primary-soft/60 pt-20 sm:pt-16">
       <div
         aria-hidden
         className="pointer-events-none absolute -top-32 -right-24 h-105 w-105 rounded-full bg-primary/15 blur-3xl pw-blob"
