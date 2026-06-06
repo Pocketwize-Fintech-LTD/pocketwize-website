@@ -16,7 +16,6 @@ const columns = [
     links: [
       { label: "About", href: "#" },
       { label: "Careers", href: "#" },
-      { label: "Press kit", href: "#" },
       { label: "Contact", href: "#" },
     ],
   },
@@ -55,7 +54,7 @@ export default function Footer() {
                     <li key={link.label}>
                       <a
                         href={link.href}
-                        className="text-[14px] text-ink-soft transition-colors hover:text-ink"
+                        className="text-[14px] text-ink-soft transition-colors hover:text-primary"
                       >
                         {link.label}
                       </a>
@@ -73,14 +72,14 @@ export default function Footer() {
             reserved.
           </p>
           <div className="flex items-center gap-5 text-[12.5px] text-mute">
-            <a className="hover:text-ink" href="https://x.com/pocketwize?s=11">
+            <a className="hover:text-primary" href="https://x.com/pocketwize?s=11">
               Twitter / X
             </a>
-            <a className="hover:text-ink" href="#">
+            <a className="hover:text-primary" href="#">
               Instagram
             </a>
             <a
-              className="hover:text-ink"
+              className="hover:text-primary"
               href="https://www.linkedin.com/company/pocketwize/"
             >
               LinkedIn

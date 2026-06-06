@@ -23,7 +23,7 @@ export default function Nav() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-[14px] font-medium text-mute transition-colors hover:text-ink"
+                className="text-[14px] font-medium text-mute transition-colors hover:text-primary"
               >
                 {link.label}
               </a>
@@ -33,7 +33,7 @@ export default function Nav() {
           <div className="flex items-center gap-2">
             <a
               href="#login"
-              className="hidden rounded-full px-4 py-2 text-[14px] font-medium text-mute transition-colors hover:text-ink sm:inline-flex"
+              className="hidden rounded-full px-4 py-2 text-[14px] font-medium text-mute transition-colors hover:text-primary sm:inline-flex"
             >
               Sign in
             </a>
