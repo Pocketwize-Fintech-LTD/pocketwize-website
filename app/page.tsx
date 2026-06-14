@@ -5,6 +5,7 @@ import Hero from "./components/Hero";
 import HowItWorks from "./components/HowItWorks";
 import Nav from "./components/Nav";
 import Problem from "./components/Problem";
+import Showcase from "./components/Showcase";
 import Trust from "./components/Trust";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
         <Problem />
         <HowItWorks />
         <Features />
+        <Showcase />
         <Trust />
         <FinalCTA />
       </main>

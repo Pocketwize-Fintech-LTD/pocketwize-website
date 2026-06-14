@@ -145,13 +145,22 @@ export default function EarlyAccessModal({
     setSubmitting(true);
     setError(null);
     try {
+      const referredBy =
+        typeof window !== "undefined"
+          ? new URLSearchParams(window.location.search).get("ref")
+          : null;
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, referredBy }),
       });
       const data = (await res.json()) as
-        | { ok: true; referralCode: string; position: number }
+        | {
+            ok: true;
+            referralCode: string;
+            position: number;
+            alreadyJoined?: boolean;
+          }
         | { ok: false; error: string };
       if (!res.ok || !data.ok) {
         setError("error" in data ? data.error : "Something went wrong.");

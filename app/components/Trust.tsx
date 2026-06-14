@@ -1,5 +1,6 @@
 import Container from "./Container";
 import Reveal from "./Reveal";
+import SecuredBy from "./SecuredBy";
 
 const guarantees = [
   "Bank-level encryption",
@@ -41,6 +42,8 @@ export default function Trust() {
             </Reveal>
           ))}
         </ul>
+
+        <SecuredBy />
       </Container>
     </section>
   );

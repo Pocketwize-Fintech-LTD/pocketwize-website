@@ -29,7 +29,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FBFAF7",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FBFAF7" },
+    { media: "(prefers-color-scheme: dark)", color: "#0d0f14" },
+  ],
   width: "device-width",
   initialScale: 1,
 };
@@ -43,7 +46,16 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        <script
+          // Apply the saved/system theme before paint to avoid a flash.
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');var d=t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',d);}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-paper text-ink">
         <EarlyAccessProvider>{children}</EarlyAccessProvider>
       </body>

@@ -20,20 +20,61 @@
   --color-amber: #b87514;
   --color-amber-soft: #fbf1e1;
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+  --font-sans:
+    var(--font-inter), ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo,
-    Consolas, monospace;
+  --font-mono:
+    var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Consolas,
+    monospace;
 
-  --shadow-card: 0 1px 2px rgba(11, 15, 25, 0.04),
-    0 8px 24px -12px rgba(11, 15, 25, 0.08);
-  --shadow-float: 0 2px 4px rgba(11, 15, 25, 0.04),
-    0 24px 56px -24px rgba(11, 15, 25, 0.16);
+  --shadow-card:
+    0 1px 2px rgba(11, 15, 25, 0.04), 0 8px 24px -12px rgba(11, 15, 25, 0.08);
+  --shadow-float:
+    0 2px 4px rgba(11, 15, 25, 0.04), 0 24px 56px -24px rgba(11, 15, 25, 0.16);
   --shadow-soft: 0 1px 0 rgba(11, 15, 25, 0.03);
 }
 
 :root {
   color-scheme: light;
+}
+
+/* Dark mode — override the semantic tokens so every utility
+   (bg-paper, text-ink, border-line, …) flips automatically.
+   Values mirror the mobile app's DarkColors / Blue scale
+   (pocketwize/constants/{theme,colors}.ts). */
+.dark {
+  color-scheme: dark;
+
+  --color-ink: #eceef1;
+  --color-ink-soft: #c5c9d2;
+  --color-mute: #7e8390;
+  --color-soft: #6e7480;
+  --color-line: #2a2e38;
+  --color-line-soft: #20242c;
+  --color-cream: #1a1d24;
+  --color-warm: #22262f;
+  --color-paper: #0d0f14;
+  --color-primary: #6c9aff;
+  --color-primary-soft: #15233f;
+  --color-primary-ink: #96b7ff;
+  --color-secondary: #7e93cf;
+  --color-secondary-soft: #1a2236;
+  --color-success: #3ec98a;
+  --color-success-soft: #112a20;
+  --color-amber: #e0a44f;
+  --color-amber-soft: #2a2012;
+
+  --shadow-card:
+    0 1px 2px rgba(0, 0, 0, 0.5), 0 8px 24px -12px rgba(0, 0, 0, 0.7);
+  --shadow-float:
+    0 2px 4px rgba(0, 0, 0, 0.5), 0 24px 56px -24px rgba(0, 0, 0, 0.75);
+  --shadow-soft: 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+html {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 html,
@@ -245,8 +286,12 @@ textarea.ea-input {
 }
 
 @keyframes pw-modal-overlay-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes pw-modal-card-in {
@@ -282,6 +327,36 @@ textarea.ea-input {
     transparent 1px
   );
   background-size: 18px 18px;
+}
+
+/* Decorative elements that use raw colours need a dark variant. */
+.dark .pw-grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+}
+
+.dark .pw-dot-bg {
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.06) 1px,
+    transparent 1px
+  );
+}
+
+/* Modal scrim uses bg-ink/40, which inverts to a light wash in dark mode. */
+.dark .pw-modal-overlay {
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+/* White button text in dark mode. Targets brand buttons/pills (both
+   `bg-primary` and `text-paper`); the blue is deepened so white stays legible. */
+.dark [class~="bg-primary"][class~="text-paper"] {
+  background-color: #2f6bff;
+  color: #ffffff;
+}
+
+.dark [class~="bg-primary"][class~="text-paper"]:hover {
+  background-color: #195ff5;
 }
 
 .pw-display {

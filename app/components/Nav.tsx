@@ -2,6 +2,8 @@ import Link from "next/link";
 import Container from "./Container";
 import EarlyAccessTrigger from "./early-access/Trigger";
 import Logo from "./Logo";
+import MobileMenu from "./MobileMenu";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { label: "Product", href: "#how-it-works" },
@@ -31,13 +33,8 @@ export default function Nav() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <a
-              href="#login"
-              className="hidden rounded-full px-4 py-2 text-[14px] font-medium text-mute transition-colors hover:text-primary sm:inline-flex"
-            >
-              Sign in
-            </a>
-            <EarlyAccessTrigger className="pw-sheen inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-[14px] font-medium text-paper transition-colors hover:bg-primary-ink">
+            <ThemeToggle />
+            <EarlyAccessTrigger className="pw-sheen hidden items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-[14px] font-medium text-paper transition-colors hover:bg-primary-ink md:inline-flex">
               Join early access
               <svg
                 aria-hidden
@@ -55,6 +52,7 @@ export default function Nav() {
                 />
               </svg>
             </EarlyAccessTrigger>
+            <MobileMenu links={navLinks} />
           </div>
         </div>
       </Container>
