@@ -28,8 +28,9 @@ export default function Hero() {
             </h1>
 
             <p className="pw-fade-up-delay-2 mx-auto mt-8 max-w-xl text-[18px] leading-[1.6] text-mute sm:text-[20px] lg:mx-0">
-              Pocketwize helps people understand spending, reduce financial
-              stress, and make smarter money decisions automatically.
+              Pocketwize is your AI financial companion helping you understand
+              spending, reduce financial stress, and build long-term wealth with
+              smarter money decisions.
             </p>
 
             <div className="pw-fade-up-delay-3 mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-4 lg:justify-start">

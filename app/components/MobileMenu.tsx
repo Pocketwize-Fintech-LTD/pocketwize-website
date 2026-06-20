@@ -75,7 +75,7 @@ export default function MobileMenu({ links }: { links: NavLink[] }) {
             onClick={() => setOpen(false)}
             className="fixed inset-0 top-16 z-40 cursor-default"
           />
-          <div className="pw-fade-up fixed inset-x-0 top-16 z-50 border-b border-line bg-paper/95 backdrop-blur-md">
+          <div className="pw-fade-up fixed inset-x-0 top-16 z-50 border-b border-line bg-paper">
             <nav className="flex flex-col gap-1 px-5 py-4">
               {links.map((link) => (
                 <a

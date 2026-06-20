@@ -17,7 +17,7 @@ export default function Home() {
         <Problem />
         <HowItWorks />
         <Features />
-        <Showcase />
+        {/* <Showcase /> */}
         <Trust />
         <FinalCTA />
       </main>

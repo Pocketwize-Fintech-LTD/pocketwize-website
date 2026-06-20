@@ -63,7 +63,7 @@ export default function Showcase() {
   return (
     <section id="screens" className="relative overflow-hidden bg-paper py-16 sm:py-20">
       <Container size="wide">
-        <div className="mx-auto max-w-2xl text-center">
+        {/* <div className="mx-auto max-w-2xl text-center">
           <div className="inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.18em] text-mute">
             <span className="h-px w-6 bg-line" />
             A look inside
@@ -73,7 +73,7 @@ export default function Showcase() {
             See what clarity{" "}
             <span className="text-primary">actually looks like.</span>
           </h2>
-        </div>
+        </div> */}
 
         <div className="mt-16 flex flex-col gap-20 sm:gap-24">
           {screens.map((screen, i) => {

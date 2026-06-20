@@ -16,14 +16,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pocketwize — Honest answers about your money",
+  title: "PocketWize | Your AI Financial Companion",
   description:
-    "Pocketwize is an AI-powered financial clarity platform for everyone. Understand where your money goes, find spending leaks, and make calmer decisions.",
+    "AI-powered financial guidance for smarter money decisions. Understand your spending, reduce financial stress, and build wealth with confidence.",
   metadataBase: new URL("https://getpocketwize.com"),
   openGraph: {
-    title: "Pocketwize — Honest answers about your money",
+    title: "PocketWize | Your AI Financial Companion",
     description:
-      "Calm, intelligent insights about your spending. Built for people who want to stop ending the month confused.",
+      "AI-powered financial guidance for smarter money decisions. Understand your spending, reduce financial stress, and build wealth with confidence.",
     type: "website",
   },
 };

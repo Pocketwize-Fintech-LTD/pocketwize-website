@@ -50,8 +50,8 @@ export default function Footer() {
           <div className="md:col-span-5">
             <Logo />
             <p className="mt-5 max-w-sm text-[14.5px] leading-[1.65] text-mute">
-              Calm, intelligent answers about your money. Built for young
-              professionals who want to stop ending the month confused.
+              Calm, intelligent guidance for every money decision from monthly
+              spending to long-term wealth building.
             </p>
           </div>
 
@@ -112,7 +112,13 @@ function SocialIcon({ name }: { name: SocialName }) {
   switch (name) {
     case "x":
       return (
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+        <svg
+          width="17"
+          height="17"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden
+        >
           <path d="M13.6 10.6 21.05 2h-1.77l-6.46 7.47L7.6 2H2l7.82 11.38L2 22h1.77l6.83-7.94L15.78 22H21.4l-7.8-11.4Zm-2.42 2.81-.79-1.13L4.4 3.3h2.72l5.08 7.27.79 1.13 6.6 9.45h-2.72l-5.39-7.74Z" />
         </svg>
       );
@@ -129,12 +135,24 @@ function SocialIcon({ name }: { name: SocialName }) {
         >
           <rect x="3" y="3" width="18" height="18" rx="5" />
           <circle cx="12" cy="12" r="4" />
-          <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" />
+          <circle
+            cx="17.2"
+            cy="6.8"
+            r="1.1"
+            fill="currentColor"
+            stroke="none"
+          />
         </svg>
       );
     case "linkedin":
       return (
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+        <svg
+          width="17"
+          height="17"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden
+        >
           <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.5 8h4v15h-4V8Zm7.5 0h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V23h-4v-6.6c0-1.57-.03-3.6-2.2-3.6-2.2 0-2.53 1.72-2.53 3.49V23h-4V8Z" />
         </svg>
       );
