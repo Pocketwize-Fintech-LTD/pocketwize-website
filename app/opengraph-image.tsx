@@ -36,6 +36,8 @@ export default function OpengraphImage() {
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
+              display: "flex",
+              flexDirection: "column",
               fontSize: 72,
               fontWeight: 600,
               lineHeight: 1.05,
@@ -43,12 +45,12 @@ export default function OpengraphImage() {
               color: "#0b0f19",
             }}
           >
-            Your AI financial companion
-            <br />
+            <span>Your AI financial companion</span>
             <span style={{ color: "#2e69e8" }}>for everyday life.</span>
           </div>
           <div
             style={{
+              display: "flex",
               marginTop: 28,
               fontSize: 30,
               lineHeight: 1.4,
