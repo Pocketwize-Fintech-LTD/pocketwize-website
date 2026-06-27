@@ -505,7 +505,7 @@ function Success({
   const inviteUrl =
     typeof window !== "undefined"
       ? `${window.location.origin}?ref=${referralCode}`
-      : `https://pocketwize.co?ref=${referralCode}`;
+      : `https://getpocketwize.com?ref=${referralCode}`;
 
   const shareText = `I just joined the Pocketwize early access — they’re building an AI financial companion that actually gets it. Join me:`;
 

@@ -5,9 +5,7 @@ import SecuredBy from "./SecuredBy";
 const guarantees = [
   "Bank-level encryption",
   "Read-only financial connections",
-  "No unauthorized transactions",
   "Privacy-first architecture",
-  "Secure infrastructure",
 ];
 
 export default function Trust() {

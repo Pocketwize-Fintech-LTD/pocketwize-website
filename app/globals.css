@@ -373,8 +373,25 @@ textarea.ea-input {
   .pw-pulse-dot,
   .pw-float,
   .pw-blob,
-  .pw-typewriter-caret {
-    animation: none;
+  .pw-typewriter-caret,
+  .pw-fade-up,
+  .pw-fade-up-delay-1,
+  .pw-fade-up-delay-2,
+  .pw-fade-up-delay-3 {
+    animation: none !important;
+  }
+
+  /* Ensure reveal-on-scroll content stays visible when motion is off. */
+  .pw-fade-up,
+  .pw-fade-up-delay-1,
+  .pw-fade-up-delay-2,
+  .pw-fade-up-delay-3 {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .pw-sheen::after {
+    display: none;
   }
 
   .pw-shimmer-row::after {

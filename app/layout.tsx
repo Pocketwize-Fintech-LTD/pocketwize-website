@@ -20,11 +20,22 @@ export const metadata: Metadata = {
   description:
     "AI-powered financial guidance for smarter money decisions. Understand your spending, reduce financial stress, and build wealth with confidence.",
   metadataBase: new URL("https://getpocketwize.com"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "PocketWize | Your AI Financial Companion",
     description:
       "AI-powered financial guidance for smarter money decisions. Understand your spending, reduce financial stress, and build wealth with confidence.",
+    url: "https://getpocketwize.com",
+    siteName: "PocketWize",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PocketWize | Your AI Financial Companion",
+    description:
+      "AI-powered financial guidance for smarter money decisions. Understand your spending, reduce financial stress, and build wealth with confidence.",
   },
 };
 

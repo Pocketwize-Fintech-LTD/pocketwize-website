@@ -1,3 +1,5 @@
+import Benefits from "./components/Benefits";
+import Clarity from "./components/Clarity";
 import Features from "./components/Features";
 import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
@@ -17,6 +19,8 @@ export default function Home() {
         <Problem />
         <HowItWorks />
         <Features />
+        <Clarity />
+        <Benefits />
         {/* <Showcase /> */}
         <Trust />
         <FinalCTA />
