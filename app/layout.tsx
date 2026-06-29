@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import EarlyAccessProvider from "./components/early-access/Provider";
 
@@ -69,6 +70,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-paper text-ink">
         <EarlyAccessProvider>{children}</EarlyAccessProvider>
+        <Analytics />
       </body>
     </html>
   );
