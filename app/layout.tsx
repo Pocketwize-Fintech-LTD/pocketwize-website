@@ -41,11 +41,12 @@ export const metadata: Metadata = {
   },
 };
 
+// NOTE: theme-color is intentionally NOT set here. A media-query themeColor
+// only follows the OS preference, so the iOS/Android browser chrome wouldn't
+// update when the user flips the in-app theme toggle. Instead we render a
+// single <meta name="theme-color"> below and keep it in sync imperatively
+// (boot script + ThemeToggle).
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#FBFAF7" },
-    { media: "(prefers-color-scheme: dark)", color: "#0d0f14" },
-  ],
   width: "device-width",
   initialScale: 1,
 };
@@ -62,10 +63,15 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* Single source of truth for browser-chrome color (iOS status bar,
+            Android toolbar). The boot script + ThemeToggle keep its `content`
+            in sync with the active in-app theme, not just the OS preference. */}
+        <meta name="theme-color" content="#FBFAF7" />
         <script
-          // Apply the saved/system theme before paint to avoid a flash.
+          // Apply the saved/system theme before paint to avoid a flash, and
+          // sync the theme-color meta so the chrome matches immediately.
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');var d=t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',d);}catch(e){}})();`,
+            __html: `(function(){try{var t=localStorage.getItem('theme');var d=t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',d);var m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content',d?'#0d0f14':'#FBFAF7');}catch(e){}})();`,
           }}
         />
       </head>

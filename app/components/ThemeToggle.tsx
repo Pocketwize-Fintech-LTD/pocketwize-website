@@ -22,6 +22,9 @@ export default function ThemeToggle() {
   function toggle() {
     const next = !dark;
     document.documentElement.classList.toggle("dark", next);
+    // Keep the browser-chrome color (iOS status bar, Android toolbar) in sync.
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", next ? "#0d0f14" : "#FBFAF7");
     try {
       localStorage.setItem("theme", next ? "dark" : "light");
     } catch {
