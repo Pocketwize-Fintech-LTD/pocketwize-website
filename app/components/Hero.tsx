@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Container from "./Container";
 import EarlyAccessTrigger from "./early-access/Trigger";
-import heroImg from "../../public/hero_img.png";
+import heroImgLight from "../../public/iphone-16-dark.png";
+import heroImgDark from "../../public/iphone-16-light.png";
 
 export default function Hero() {
   return (
@@ -65,11 +66,18 @@ export default function Hero() {
                 className="absolute inset-0 -z-10 translate-y-6 rounded-[3rem] bg-primary/15 blur-3xl"
               />
               <Image
-                src={heroImg}
+                src={heroImgLight}
                 alt="Pocketwize AI Coach showing a conversation about spending insights"
                 priority
                 sizes="(max-width: 640px) 320px, (max-width: 1024px) 380px, 480px"
-                className="pw-float relative h-auto max-h-128 w-auto select-none lg:max-h-150"
+                className="pw-float pw-only-light relative h-auto max-h-128 w-auto select-none lg:max-h-150"
+              />
+              <Image
+                src={heroImgDark}
+                alt="Pocketwize AI Coach showing a conversation about spending insights"
+                priority
+                sizes="(max-width: 640px) 320px, (max-width: 1024px) 380px, 480px"
+                className="pw-float pw-only-dark relative h-auto max-h-128 w-auto select-none lg:max-h-150"
               />
             </div>
           </div>

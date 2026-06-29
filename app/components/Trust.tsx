@@ -12,7 +12,7 @@ export default function Trust() {
   return (
     <section
       id="trust"
-      className="relative overflow-hidden bg-primary-soft/60 py-16 sm:py-20"
+      className="relative overflow-hidden bg-cream/40 py-16 sm:py-20"
     >
       <Container size="default" className="relative">
         <div className="mx-auto max-w-2xl text-center">

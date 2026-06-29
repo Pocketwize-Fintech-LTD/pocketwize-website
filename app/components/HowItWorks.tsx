@@ -24,7 +24,7 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="relative overflow-hidden bg-primary-soft/60 py-16 sm:py-20">
+    <section id="how-it-works" className="relative overflow-hidden bg-paper py-16 sm:py-20">
       <Container size="default">
         <div className="mx-auto max-w-2xl text-center">
           <div className="inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.18em] text-mute">

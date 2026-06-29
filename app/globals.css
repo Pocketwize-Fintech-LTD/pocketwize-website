@@ -348,6 +348,29 @@ textarea.ea-input {
   background-color: rgba(0, 0, 0, 0.65);
 }
 
+/* Fixed nav: in dark mode the 40%-opaque bar isn't dark enough to keep its
+   light text legible when it scrolls over a photo (e.g. the Benefits images,
+   which don't darken with the theme). Make the frosted bar more opaque in
+   dark mode while keeping the airy translucency in light mode. */
+.dark .pw-nav {
+  background-color: rgba(13, 15, 20, 0.85);
+}
+
+/* Theme-paired images: render both for SSR, show only the one matching the
+   active theme. (The `.dark` class is the theme source of truth — see
+   ThemeToggle — so we can't rely on Tailwind's prefers-color-scheme `dark:`.) */
+.pw-only-dark {
+  display: none;
+}
+
+.dark .pw-only-light {
+  display: none;
+}
+
+.dark .pw-only-dark {
+  display: block;
+}
+
 /* White button text in dark mode. Targets brand buttons/pills (both
    `bg-primary` and `text-paper`); the blue is deepened so white stays legible. */
 .dark [class~="bg-primary"][class~="text-paper"] {

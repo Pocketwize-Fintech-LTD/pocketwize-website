@@ -1,4 +1,5 @@
 import Image, { type StaticImageData } from "next/image";
+import Container from "./Container";
 import Reveal from "./Reveal";
 import friendGroupImg from "../../public/friendgroup.png";
 import personalImg from "../../public/personal.png";
@@ -27,8 +28,22 @@ const benefits: Benefit[] = [
 
 export default function Benefits() {
   return (
-    <section id="benefits" className="relative bg-cream/40 py-32 sm:py-44">
-      <ul className="grid gap-3 px-3 sm:grid-cols-2 sm:gap-4 sm:px-4">
+    <section id="benefits" className="relative bg-cream/40 py-16 sm:py-20">
+      <Container size="default">
+        <div className="mx-auto max-w-2xl text-center">
+          <div className="inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.18em] text-mute">
+            <span className="h-px w-6 bg-line" />
+            Why PocketWize
+            <span className="h-px w-6 bg-line" />
+          </div>
+          <h2 className="pw-display mt-4 text-[34px] font-medium leading-[1.1] text-ink sm:text-[44px]">
+            Less money stress,{" "}
+            <span className="text-primary">more living.</span>
+          </h2>
+        </div>
+      </Container>
+
+      <ul className="mt-14 grid gap-3 px-3 sm:grid-cols-2 sm:gap-4 sm:px-4">
         {benefits.map((b, i) => (
           <Reveal
             as="li"
