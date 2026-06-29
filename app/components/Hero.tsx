@@ -70,14 +70,14 @@ export default function Hero() {
                 alt="Pocketwize AI Coach showing a conversation about spending insights"
                 priority
                 sizes="(max-width: 640px) 360px, (max-width: 1024px) 440px, 560px"
-                className="pw-float pw-only-light relative h-auto max-h-144 w-auto select-none lg:max-h-180"
+                className="pw-float pw-only-light relative h-auto max-h-176 w-auto select-none lg:max-h-none lg:w-80 xl:w-90"
               />
               <Image
                 src={heroImgDark}
                 alt="Pocketwize AI Coach showing a conversation about spending insights"
                 priority
                 sizes="(max-width: 640px) 360px, (max-width: 1024px) 440px, 560px"
-                className="pw-float pw-only-dark relative h-auto max-h-144 w-auto select-none lg:max-h-180"
+                className="pw-float pw-only-dark relative h-auto max-h-176 w-auto select-none lg:max-h-none lg:w-80 xl:w-90"
               />
             </div>
           </div>

@@ -23,8 +23,14 @@ export default function ThemeToggle() {
     const next = !dark;
     document.documentElement.classList.toggle("dark", next);
     // Keep the browser-chrome color (iOS status bar, Android toolbar) in sync.
-    const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", next ? "#0d0f14" : "#FBFAF7");
+    // iOS Safari frequently won't repaint the chrome when only the existing
+    // meta's `content` changes, so replace the whole <meta> node to force an
+    // immediate update.
+    document.querySelector('meta[name="theme-color"]')?.remove();
+    const meta = document.createElement("meta");
+    meta.name = "theme-color";
+    meta.content = next ? "#0d0f14" : "#FBFAF7";
+    document.head.appendChild(meta);
     try {
       localStorage.setItem("theme", next ? "dark" : "light");
     } catch {
