@@ -69,15 +69,15 @@ export default function Hero() {
                 src={heroImgLight}
                 alt="Pocketwize AI Coach showing a conversation about spending insights"
                 priority
-                sizes="(max-width: 640px) 320px, (max-width: 1024px) 380px, 480px"
-                className="pw-float pw-only-light relative h-auto max-h-128 w-auto select-none lg:max-h-150"
+                sizes="(max-width: 640px) 360px, (max-width: 1024px) 440px, 560px"
+                className="pw-float pw-only-light relative h-auto max-h-144 w-auto select-none lg:max-h-180"
               />
               <Image
                 src={heroImgDark}
                 alt="Pocketwize AI Coach showing a conversation about spending insights"
                 priority
-                sizes="(max-width: 640px) 320px, (max-width: 1024px) 380px, 480px"
-                className="pw-float pw-only-dark relative h-auto max-h-128 w-auto select-none lg:max-h-150"
+                sizes="(max-width: 640px) 360px, (max-width: 1024px) 440px, 560px"
+                className="pw-float pw-only-dark relative h-auto max-h-144 w-auto select-none lg:max-h-180"
               />
             </div>
           </div>
