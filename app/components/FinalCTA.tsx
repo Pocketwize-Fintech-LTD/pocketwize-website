@@ -42,9 +42,6 @@ export default function FinalCTA() {
                   />
                 </svg>
               </EarlyAccessTrigger>
-              <p className="text-[12.5px] text-soft">
-                Takes about 60 seconds. No debit card.
-              </p>
             </div>
           </div>
         </Reveal>

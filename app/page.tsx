@@ -1,3 +1,5 @@
+import Benefits from "./components/Benefits";
+import Clarity from "./components/Clarity";
 import Features from "./components/Features";
 import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
@@ -15,6 +17,8 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Problem />
+        <Clarity />
+        <Benefits />
         <HowItWorks />
         <Features />
         {/* <Showcase /> */}

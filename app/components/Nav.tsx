@@ -13,7 +13,7 @@ const navLinks = [
 
 export default function Nav() {
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-line/40 bg-paper/40 backdrop-blur-md">
+    <header className="pw-nav fixed inset-x-0 top-0 z-40 border-b border-line/40 bg-paper/40 backdrop-blur-md">
       <Container size="wide">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" aria-label="Pocketwize home" className="shrink-0">
