@@ -6,7 +6,7 @@ import type { FormEvent, KeyboardEvent } from "react";
 type Step = 1 | 2 | 3 | 4 | 5;
 
 type FormState = {
-  firstName: string;
+  fullName: string;
   email: string;
   challenge: string;
   behavior: string;
@@ -36,7 +36,7 @@ const behaviors = [
 ];
 
 const initialForm: FormState = {
-  firstName: "",
+  fullName: "",
   email: "",
   challenge: "",
   behavior: "",
@@ -125,7 +125,7 @@ export default function EarlyAccessModal({
   const goBack = () => setStep((s) => (Math.max(1, s - 1) as Step));
 
   const validateStep1 = () => {
-    if (!form.firstName.trim()) return "Please add your first name.";
+    if (!form.fullName.trim()) return "Please add your first name.";
     if (!isValidEmail(form.email)) return "Please enter a valid email.";
     return null;
   };
@@ -286,7 +286,7 @@ export default function EarlyAccessModal({
           )}
           {step === 5 && result && (
             <Success
-              firstName={form.firstName}
+              fullName={form.fullName}
               referralCode={result.referralCode}
               position={result.position}
               onClose={handleClose}
@@ -361,16 +361,16 @@ function Step1({
         hint="Two quick taps and you’re in."
       />
       <div className="space-y-3">
-        <Field label="First name">
+        <Field label="Full name">
           <input
             ref={firstFieldRef}
             type="text"
-            autoComplete="given-name"
-            value={form.firstName}
+            autoComplete="name"
+            value={form.fullName}
             onChange={(e) =>
-              setForm((f) => ({ ...f, firstName: e.target.value }))
+              setForm((f) => ({ ...f, fullName: e.target.value }))
             }
-            placeholder="Tomi"
+            placeholder="Tomi Johnson"
             className="ea-input"
             required
           />
@@ -491,12 +491,12 @@ function Step4({
 }
 
 function Success({
-  firstName,
+  fullName,
   referralCode,
   position,
   onClose,
 }: {
-  firstName: string;
+  fullName: string;
   referralCode: string;
   position: number;
   onClose: () => void;
@@ -547,7 +547,7 @@ function Success({
           You’re on the waitlist 🎉
         </h2>
         <p className="mx-auto mt-3 max-w-md text-[15px] leading-[1.6] text-mute">
-          Thanks{firstName ? `, ${firstName}` : ""}. We’re inviting early users
+          Thanks{fullName ? `, ${fullName}` : ""}. We’re inviting early users
           gradually to help shape Pocketwize. You’re currently{" "}
           <span className="font-medium text-ink">#{position}</span> in line.
         </p>

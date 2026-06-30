@@ -329,6 +329,11 @@ textarea.ea-input {
   background-size: 18px 18px;
 }
 
+/* Hero phone glow — slightly stronger in dark mode */
+.dark .pw-phone-glow {
+  background-color: rgba(46, 105, 232, 0.3);
+}
+
 /* Decorative elements that use raw colours need a dark variant. */
 .dark .pw-grid-bg {
   background-image:
