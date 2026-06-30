@@ -1,26 +1,28 @@
 import Image from "next/image";
 import Container from "./Container";
 import EarlyAccessTrigger from "./early-access/Trigger";
-import heroImgLight from "../../public/iphone-16-dark.png";
-import heroImgDark from "../../public/iphone-16-light.png";
+import heroImgLight from "../../public/iphone-16-light-hd.webp";
+import heroImgDark from "../../public/iphone-16-dark-hd.webp";
 
 export default function Hero() {
   return (
     <section className="relative flex min-h-svh items-center overflow-hidden bg-primary-soft/60 pt-20 sm:pt-16">
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-32 -right-24 h-105 w-105 rounded-full bg-primary/15 blur-3xl pw-blob"
+        className="pointer-events-none absolute -top-32 -right-24 h-[520px] w-[520px] rounded-full bg-primary/15 blur-3xl pw-blob"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-40 -left-32 h-90 w-90 rounded-full bg-secondary/10 blur-3xl pw-blob"
+        className="pointer-events-none absolute -bottom-40 -left-32 h-[420px] w-[420px] rounded-full bg-secondary/10 blur-3xl pw-blob"
         style={{ animationDelay: "-9s" }}
       />
+
       <Container
         size="wide"
-        className="relative pt-12 pb-14 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-20"
+        className="relative pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-20"
       >
         <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-6">
+
           <div className="text-center lg:col-span-7 lg:text-left">
             <h1 className="pw-display pw-fade-up-delay-1 text-[44px] font-medium leading-[1.05] text-ink sm:text-[60px] lg:text-[76px]">
               Your AI financial
@@ -59,28 +61,41 @@ export default function Hero() {
             <TrustStrip />
           </div>
 
-          <div className="pw-fade-up-delay-2 relative lg:col-span-5">
-            <div className="relative mx-auto flex w-full justify-center lg:justify-end">
+          <div className="pw-fade-up-delay-2 lg:col-span-5">
+            <div className="relative mx-auto flex justify-center lg:justify-end">
               <div
                 aria-hidden
-                className="absolute inset-0 -z-10 translate-y-6 rounded-[3rem] bg-primary/15 blur-3xl"
+                className="pw-phone-glow pointer-events-none absolute inset-0 -z-10 translate-y-4 rounded-[3rem] bg-primary/18 blur-3xl"
               />
-              <Image
-                src={heroImgLight}
-                alt="Pocketwize AI Coach showing a conversation about spending insights"
-                priority
-                sizes="(max-width: 640px) 360px, (max-width: 1024px) 440px, 560px"
-                className="pw-float pw-only-light relative h-auto max-h-176 w-auto select-none lg:max-h-none lg:w-80 xl:w-90"
-              />
-              <Image
-                src={heroImgDark}
-                alt="Pocketwize AI Coach showing a conversation about spending insights"
-                priority
-                sizes="(max-width: 640px) 360px, (max-width: 1024px) 440px, 560px"
-                className="pw-float pw-only-dark relative h-auto max-h-176 w-auto select-none lg:max-h-none lg:w-80 xl:w-90"
-              />
+
+              <div className="pw-float relative w-[200px] sm:w-[230px] lg:w-[260px] xl:w-[290px]">
+                <div
+                  aria-hidden
+                  className="pw-only-dark pointer-events-none absolute inset-0 z-10 rounded-[27px] sm:rounded-[31px] lg:rounded-[35px] xl:rounded-[39px]"
+                  style={{ boxShadow: "inset 0 0 0 7px #000" }}
+                />
+
+                <Image
+                  src={heroImgLight}
+                  alt="Pocketwize AI Coach — spending insights"
+                  priority
+                  unoptimized
+                  className="pw-only-light h-auto w-full select-none"
+                  style={{ filter: "drop-shadow(0 28px 44px rgba(0,0,0,0.18))" }}
+                />
+
+                <Image
+                  src={heroImgDark}
+                  alt="Pocketwize AI Coach — spending insights"
+                  priority
+                  unoptimized
+                  className="pw-only-dark h-auto w-full select-none"
+                  style={{ filter: "drop-shadow(0 28px 52px rgba(0,0,0,0.62))" }}
+                />
+              </div>
             </div>
           </div>
+
         </div>
       </Container>
     </section>
