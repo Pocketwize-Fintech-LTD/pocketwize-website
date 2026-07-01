@@ -511,7 +511,7 @@ function Success({
       <button
         type="button"
         onClick={onClose}
-        className="text-[14px] font-medium text-mute transition-colors hover:text-ink"
+        className="pw-sheen inline-flex h-11 items-center justify-center rounded-full bg-primary px-8 text-[14.5px] font-medium text-paper transition-colors hover:bg-primary-ink"
       >
         Done
       </button>
