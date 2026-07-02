@@ -50,6 +50,7 @@ async function appendToSheet(row: string[]) {
     spreadsheetId: sheetId,
     range: "Sheet1!A:H",
     valueInputOption: "USER_ENTERED",
+    insertDataOption: "INSERT_ROWS",
     requestBody: { values: [row] },
   });
 }
