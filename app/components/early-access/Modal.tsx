@@ -13,6 +13,11 @@ type FormState = {
   motivation: string;
 };
 
+type SubmissionResult = {
+  referralCode: string;
+  position: number;
+};
+
 const challenges = [
   "Overspending",
   "Saving consistently",
@@ -55,7 +60,7 @@ export default function EarlyAccessModal({
   const [form, setForm] = useState<FormState>(initialForm);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [submitted, setSubmitted] = useState(false);
+  const [result, setResult] = useState<SubmissionResult | null>(null);
 
   const dialogRef = useRef<HTMLDivElement | null>(null);
   const firstFieldRef = useRef<HTMLInputElement | null>(null);
@@ -66,7 +71,7 @@ export default function EarlyAccessModal({
     setForm(initialForm);
     setSubmitting(false);
     setError(null);
-    setSubmitted(false);
+    setResult(null);
   }, []);
 
   const handleClose = useCallback(() => {
@@ -150,14 +155,19 @@ export default function EarlyAccessModal({
         body: JSON.stringify({ ...form, referredBy }),
       });
       const data = (await res.json()) as
-        | { ok: true }
+        | {
+            ok: true;
+            referralCode: string;
+            position: number;
+            alreadyJoined?: boolean;
+          }
         | { ok: false; error: string };
       if (!res.ok || !data.ok) {
         setError("error" in data ? data.error : "Something went wrong.");
         setSubmitting(false);
         return;
       }
-      setSubmitted(true);
+      setResult({ referralCode: data.referralCode, position: data.position });
       setStep(5);
     } catch {
       setError("Network error. Please try again.");
@@ -274,8 +284,13 @@ export default function EarlyAccessModal({
               error={error}
             />
           )}
-          {step === 5 && submitted && (
-            <Success fullName={form.fullName} onClose={handleClose} />
+          {step === 5 && result && (
+            <Success
+              fullName={form.fullName}
+              referralCode={result.referralCode}
+              position={result.position}
+              onClose={handleClose}
+            />
           )}
         </div>
       </div>
@@ -477,11 +492,40 @@ function Step4({
 
 function Success({
   fullName,
+  referralCode,
+  position,
   onClose,
 }: {
   fullName: string;
+  referralCode: string;
+  position: number;
   onClose: () => void;
 }) {
+  const [copied, setCopied] = useState(false);
+  const inviteUrl =
+    typeof window !== "undefined"
+      ? `${window.location.origin}?ref=${referralCode}`
+      : `https://getpocketwize.com?ref=${referralCode}`;
+
+  const shareText = `I just joined the Pocketwize early access — they’re building an AI financial companion that actually gets it. Join me:`;
+
+  const onCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(inviteUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+    }
+  };
+
+  const whatsappHref = `https://wa.me/?text=${encodeURIComponent(
+    `${shareText} ${inviteUrl}`,
+  )}`;
+  const xHref = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+    `${shareText} ${inviteUrl}`,
+  )}`;
+
   return (
     <div className="space-y-7 text-center">
       <div className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-full bg-success-soft text-success">
@@ -503,15 +547,51 @@ function Success({
           You’re on the waitlist 🎉
         </h2>
         <p className="mx-auto mt-3 max-w-md text-[15px] leading-[1.6] text-mute">
-          Thanks{fullName ? `, ${fullName}` : ""}. We’ll email you as soon as
-          Pocketwize is ready for you to try.
+          Thanks{fullName ? `, ${fullName}` : ""}. We’re inviting early users
+          gradually to help shape Pocketwize. You’re currently{" "}
+          <span className="font-medium text-ink">#{position}</span> in line.
         </p>
+      </div>
+
+      <div className="rounded-3xl border border-line bg-cream/60 p-5 text-left sm:p-6">
+        <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-soft">
+          Move up the waitlist
+        </p>
+        <p className="mt-1.5 text-[14.5px] leading-[1.55] text-ink">
+          Invite a friend with your code{" "}
+          <span className="rounded-md bg-paper px-1.5 py-0.5 font-mono text-[13px] text-primary">
+            {referralCode}
+          </span>{" "}
+          — every signup bumps you up.
+        </p>
+        <div className="mt-4 grid gap-2 sm:grid-cols-3">
+          <ShareButton
+            href={whatsappHref}
+            label="WhatsApp"
+            tone="success"
+            icon={<WhatsAppIcon />}
+          />
+          <ShareButton
+            href={xHref}
+            label="Share on X"
+            tone="ink"
+            icon={<XIcon />}
+          />
+          <button
+            type="button"
+            onClick={onCopy}
+            className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-line bg-paper text-[13.5px] font-medium text-ink transition-colors hover:border-ink/30"
+          >
+            <LinkIcon />
+            {copied ? "Copied!" : "Copy invite link"}
+          </button>
+        </div>
       </div>
 
       <button
         type="button"
         onClick={onClose}
-        className="pw-sheen inline-flex h-11 items-center justify-center rounded-full bg-primary px-8 text-[14.5px] font-medium text-paper transition-colors hover:bg-primary-ink"
+        className="text-[14px] font-medium text-mute transition-colors hover:text-ink"
       >
         Done
       </button>
@@ -586,5 +666,75 @@ function BackButton({
       </svg>
       Back
     </button>
+  );
+}
+
+function ShareButton({
+  href,
+  label,
+  icon,
+  tone,
+}: {
+  href: string;
+  label: string;
+  icon: React.ReactNode;
+  tone: "success" | "ink";
+}) {
+  const tones = {
+    success: "bg-success text-paper hover:bg-success/90",
+    ink: "bg-ink text-paper hover:bg-ink/90",
+  };
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`inline-flex h-10 items-center justify-center gap-2 rounded-full text-[13.5px] font-medium transition-colors ${tones[tone]}`}
+    >
+      {icon}
+      {label}
+    </a>
+  );
+}
+
+function WhatsAppIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
+      <path
+        d="M3 13.5 4 11A6 6 0 1 1 8 14a5.9 5.9 0 0 1-3-.8L3 13.5Z"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6.5 6c.2 1.5 1.5 2.8 3 3 .4.1.8 0 1-.3l.3-.4c.2-.2.5-.2.7 0l.5.4c.2.2.2.5 0 .7-.4.5-1 .8-1.7.8-2.2 0-4.1-1.9-4.1-4.1 0-.6.3-1.3.8-1.7.2-.2.5-.2.7 0l.4.5c.2.2.2.5 0 .7L7.8 6c-.3.2-.4.6-.3 1Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+function XIcon() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden>
+      <path
+        d="m2 2 5.2 7L2.4 14h2L8.2 10l3 4h2.8L8.5 6.6 13 2h-2L7.8 5.6 5 2H2Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+function LinkIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
+      <path
+        d="M9 7a3 3 0 0 1 0 4l-2 2a3 3 0 0 1-4-4l1-1M7 9a3 3 0 0 1 0-4l2-2a3 3 0 0 1 4 4l-1 1"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }

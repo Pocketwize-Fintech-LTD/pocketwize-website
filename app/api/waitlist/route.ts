@@ -50,6 +50,7 @@ async function appendToSheet(row: string[]) {
     spreadsheetId: sheetId,
     range: "Sheet1!A:H",
     valueInputOption: "USER_ENTERED",
+    insertDataOption: "INSERT_ROWS",
     requestBody: { values: [row] },
   });
 }
@@ -79,6 +80,7 @@ export async function POST(request: Request) {
   }
 
   const referralCode = deriveReferralCode(email);
+  const position = 100 + (djb2(email) % 900);
   const submittedAt = new Date().toISOString();
 
   const row = [
@@ -101,5 +103,5 @@ export async function POST(request: Request) {
 
   console.info("[waitlist] new signup", { email, fullName, submittedAt });
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, referralCode, position });
 }
