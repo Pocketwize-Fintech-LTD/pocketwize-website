@@ -1,5 +1,8 @@
 import { google } from "googleapis";
+import { Resend } from "resend";
 import { NextResponse } from "next/server";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 type WaitlistPayload = {
   fullName?: string;
@@ -14,12 +17,12 @@ function djb2(str: string) {
   let hash = 5381;
   for (let i = 0; i < str.length; i += 1) {
     hash = (hash * 33) ^ str.charCodeAt(i);
-  } 
+  }
   return Math.abs(hash);
 }
 
 function deriveReferralCode(email: string) {
-  const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; 
+  const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
   let n = djb2(email.toLowerCase());
   let code = "";
   for (let i = 0; i < 6; i += 1) {
@@ -27,6 +30,28 @@ function deriveReferralCode(email: string) {
     n = Math.floor(n / alphabet.length) || djb2(code);
   }
   return code;
+}
+
+async function sendSignupEmail(row: string[]) {
+  if (!process.env.RESEND_API_KEY || !process.env.NOTIFY_EMAIL) return;
+  const [submittedAt, fullName, email, challenge, behavior, motivation, referredBy, referralCode] = row;
+  await resend.emails.send({
+    from: "PocketWize Waitlist <waitlist@getpocketwize.com>",
+    to: process.env.NOTIFY_EMAIL,
+    subject: `New waitlist signup — ${fullName}`,
+    text: [
+      `New PocketWize waitlist signup`,
+      ``,
+      `Name:        ${fullName}`,
+      `Email:       ${email}`,
+      `Challenge:   ${challenge || "—"}`,
+      `Behavior:    ${behavior || "—"}`,
+      `Motivation:  ${motivation || "—"}`,
+      `Referred by: ${referredBy || "—"}`,
+      `Referral code: ${referralCode}`,
+      `Submitted:   ${submittedAt}`,
+    ].join("\n"),
+  });
 }
 
 async function appendToSheet(row: string[]) {
@@ -125,12 +150,14 @@ export async function POST(request: Request) {
     referralCode,
   ];
 
-  try {
-    await appendToSheet(row);
-  } catch (err) {
-    console.error("[waitlist] failed to write to Google Sheet:", err);
-    // Still return success to the user — don't block signups over a sheet write failure
-  }
+  await Promise.allSettled([
+    appendToSheet(row).catch((err) =>
+      console.error("[waitlist] sheet write failed:", err),
+    ),
+    sendSignupEmail(row).catch((err) =>
+      console.error("[waitlist] email notification failed:", err),
+    ),
+  ]);
 
   console.info("[waitlist] new signup", { email, fullName, submittedAt });
 
