@@ -48,7 +48,7 @@ async function appendToSheet(row: string[]) {
   const sheets = google.sheets({ version: "v4", auth });
   await sheets.spreadsheets.values.append({
     spreadsheetId: sheetId,
-    range: "Feedback Table!A:H",
+    range: "Sheet1!A:H",
     valueInputOption: "USER_ENTERED",
     insertDataOption: "INSERT_ROWS",
     requestBody: { values: [row] },
