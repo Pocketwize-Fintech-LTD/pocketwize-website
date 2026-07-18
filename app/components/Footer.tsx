@@ -1,11 +1,20 @@
 import Container from "./Container";
 import Logo from "./Logo";
 
-type SocialName = "x" | "instagram" | "linkedin";
+type SocialName = "x" | "instagram" | "tiktok" | "linkedin";
 
 const socials: { name: SocialName; label: string; href: string }[] = [
   { name: "x", label: "Twitter / X", href: "https://x.com/pocketwize?s=11" },
-  // { name: "instagram", label: "Instagram", href: "#" },
+  {
+    name: "instagram",
+    label: "Instagram",
+    href: "https://www.instagram.com/pocketwize",
+  },
+  {
+    name: "tiktok",
+    label: "TikTok",
+    href: "https://www.tiktok.com/@getpocketwize",
+  },
   {
     name: "linkedin",
     label: "LinkedIn",
@@ -142,6 +151,18 @@ function SocialIcon({ name }: { name: SocialName }) {
             fill="currentColor"
             stroke="none"
           />
+        </svg>
+      );
+    case "tiktok":
+      return (
+        <svg
+          width="17"
+          height="17"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden
+        >
+          <path d="M16.5 2h-3v13.2a2.7 2.7 0 1 1-2.14-2.64V9.5a5.8 5.8 0 1 0 5.14 5.76V8.9a7.03 7.03 0 0 0 4.1 1.32V7.2a4.1 4.1 0 0 1-4.1-4.1V2Z" />
         </svg>
       );
     case "linkedin":
