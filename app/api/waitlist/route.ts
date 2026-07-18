@@ -2,7 +2,15 @@ import { google } from "googleapis";
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Instantiate lazily: constructing Resend with a missing key throws, which
+// would crash the build when Next.js evaluates this module. Email is optional,
+// so only create the client when the key is actually present.
+let resendClient: Resend | null = null;
+function getResend(): Resend | null {
+  if (!process.env.RESEND_API_KEY) return null;
+  if (!resendClient) resendClient = new Resend(process.env.RESEND_API_KEY);
+  return resendClient;
+}
 
 type WaitlistPayload = {
   fullName?: string;
@@ -33,7 +41,8 @@ function deriveReferralCode(email: string) {
 }
 
 async function sendSignupEmail(row: string[]) {
-  if (!process.env.RESEND_API_KEY || !process.env.NOTIFY_EMAIL) return;
+  const resend = getResend();
+  if (!resend || !process.env.NOTIFY_EMAIL) return;
   const [submittedAt, fullName, email, challenge, behavior, motivation, referredBy, referralCode] = row;
   await resend.emails.send({
     from: "PocketWize Waitlist <waitlist@getpocketwize.com>",
